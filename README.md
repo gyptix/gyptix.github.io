@@ -1,4 +1,3 @@
-
 # GyPTix
 
 _Your Personal AI assistant that never leaves your device..._
