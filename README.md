@@ -1,6 +1,7 @@
 # GyPTix
 
-_Your Personal AI assistant that never leaves your device..._
+_Your FREE Personal AI assistant that never leaves your device..._
+_never collects any personal info..._
 
 [![](https://gyptix.github.io/available.gif)](https://apps.apple.com/us/app/gyptix/id6741091005)
 
