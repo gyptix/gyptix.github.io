@@ -1,5 +1,7 @@
 # GyPTix
 
+_Your Personal AI assistant that never leaves your device..._
+
 * Install from AppStore [https://apps.apple.com/us/app/gyptix/id6741091005](https://apps.apple.com/us/app/gyptix/id6741091005)
 
 * Test Prerelease in TestFlight [https://testflight.apple.com/join/9UuZsryc](https://testflight.apple.com/join/9UuZsryc)
