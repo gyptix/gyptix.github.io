@@ -4,23 +4,69 @@
     <title>GyPTix</title>
     <meta charset="UTF-8">
     <meta name="color-scheme" content="light dark">
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#ffffff"
+          media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#000000"
+          media="(prefers-color-scheme: dark)">
     <meta name="viewport"
-          content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, 
-                   user-scalable=no, shrink-to-fit=no, viewport-fit=cover">
+          content="width=device-width, height=device-height, initial-scale=1.0,
+                   maximum-scale=1.0, user-scalable=no, shrink-to-fit=no,
+                   viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent">
     <meta name="theme-color" content="#000000">
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <script type="module">
         import { init } from "script.js"
-        document.addEventListener("DOMContentLoaded", () => { init() })
+        document.addEventListener("DOMContentLoaded", () => init())
     </script>
 </head>
 <body>
-    <p>Hello</p>
+    <div class="content">
+        <p>GyPTix</p>
+        <div id="header"></div>
+        <div id="page"></div>
+        <div id="locales">
+            <div id="en">
+                <code id="en.page0.md" class="page">
+                    ### Page 0
+                    * this page is in English
+                    * and can contain markdown
+                    ```c
+                    int main(int argc, const char* argv[]) { return 0; }
+                    ```
+                </code>
+                <code id="en.page1.md" class="page">
+                    ### Page 1
+                    * this page is in English
+                    * and can contain markdown
+                    ```c
+                    int main(int argc, const char* argv[]) { return 0; }
+                    ```
+                </code>
+            </div>
+            <div id="es">
+                <code id="es.page0.md" class="page">
+                    ### Page 0
+                    * this page will be in Spanish
+                    * and can contain markdown
+                    ```c
+                    int main(int argc, const char* argv[]) { return 0; }
+                    ```
+                </code>
+                <code id="es.page1.md" class="page">
+                    ### Page 1
+                    * this page will be in Spanish
+                    * and can contain markdown
+                    ```c
+                    int main(int argc, const char* argv[]) { return 0; }
+                    ```
+                </code>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
