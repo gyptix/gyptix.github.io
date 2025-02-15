@@ -1,27 +1,29 @@
 "use strict"
 
-import * as marked from "app://./marked.js"
+import { marked } from "https://unpkg.com/marked?module"
+
+marked.use({ pedantic: false, gfm: true, breaks: false })
 
 const get      = id  => document.getElementById(id)
 const render   = txt => marked.parse(txt)
 
 const init = () => {
     const head   = get("header")
-    const body   = get("page")
+    const page   = get("page")
     const langs  = get("locales").children
     const locale = langs[0].id
     const pages  = langs[0].querySelectorAll(".page")
-
+    
     pages.forEach((page, idx) => {
         const tab = document.createElement("button")
         tab.textContent = "page " + idx
         tab.onclick = () => {
-            body.innerHTML = render(page.textContent)
+            page.innerHTML = render(page.textContent)
         }
         head.appendChild(tab)
     })
 
-    body.innerHTML = render(pages[0].textContent)
+    page.innerHTML = render(pages[0].textContent)
 }
 
 export { init }
