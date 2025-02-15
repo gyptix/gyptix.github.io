@@ -12,11 +12,11 @@ const init = () => {
     const locale = langs[0].id
     const pages  = langs[0].querySelectorAll(".page")
     
-    pages.forEach((page, idx) => {
+    pages.forEach((p, idx) => {
         const tab = document.createElement("button")
         tab.textContent = "page " + idx
         tab.onclick = () => {
-            page.innerHTML = render(page.textContent)
+            page.innerHTML = render(p.textContent)
         }
         head.appendChild(tab)
     })
