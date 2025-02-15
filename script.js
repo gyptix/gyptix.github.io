@@ -1,7 +1,5 @@
 "use strict"
 
-import { marked } from "https://unpkg.com/marked?module"
-
 marked.use({ pedantic: false, gfm: true, breaks: false })
 
 const get      = id  => document.getElementById(id)
