@@ -52,6 +52,9 @@
             padding: 0.5rem;
             cursor: pointer;
         }
+        .glyphfix {
+            filter: invert(1);
+        }
         main, footer {
             max-width: 50rem;
             margin: auto;
@@ -84,9 +87,9 @@
 </head>
 <body>
     <header>
-        <button id="font-decrease" class="button" title="Decrease Font Size" onclick="decreaseFontSize()">a</button>
-        <button id="font-increase" class="button" title="Increase Font Size" onclick="increaseFontSize()">A</button>
-        <button id="toggle_theme" class="button" title="Toggle Dark/Light Theme" onclick="toggleTheme()">◐</button>
+        <button id="font-decrease" class="button glyphfix" title="Decrease Font Size" onclick="decreaseFontSize()">a</button>
+        <button id="font-increase" class="button glyphfix" title="Increase Font Size" onclick="increaseFontSize()">A</button>
+        <button id="toggle_theme" class="button glyphfix" title="Toggle Dark/Light Theme" onclick="toggleTheme()">◐</button>
     </header>
     <main>
         <p>Welcome to the future home of GyPTix.</p>
