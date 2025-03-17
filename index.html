@@ -2,9 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>GyPTix</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <img src="favicon.ico" alt="GyPTix Logo" class="favicon">
+        <div class="button-container">
+            <button id="font-decrease" class="button glyphfix" title="Decrease Font Size" onclick="decreaseFontSize()">a</button>
+            <button id="font-increase" class="button glyphfix" title="Increase Font Size" onclick="increaseFontSize()">A</button>
+            <button id="toggle_theme" class="button glyphfix" title="Toggle Dark/Light Theme" onclick="toggleTheme()">◐</button>
+        </div>
+    </header>
+    <main>
+        <p>Welcome to the future home of GyPTix.</p>
+    </main>
+    <footer>
+        &copy; 2025 GyPTix
+    </footer>
     <style>
         * {
             box-sizing: border-box;
@@ -39,21 +55,43 @@
         }
         header {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             align-items: center;
             padding: 1rem;
             font-size: 1.5rem;
             font-weight: bold;
         }
+        .favicon {
+            width: 2rem;
+            height: 2rem;
+        }
+        .button-container {
+            display: flex;
+            gap: 0.5rem;
+        }
         .button {
             background: none;
             border: none;
-            font-size: 1rem;
-            padding: 0.5rem;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
             cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
         .glyphfix {
             filter: invert(1);
+            border: 0.125rem solid rgba(136, 136, 136, 0.2);
+            border-radius: 0.25rem;
+        }
+        .glyphfix:focus, .glyphfix:active {
+            outline: none;
+            box-shadow: none;
         }
         main, footer {
             max-width: 50rem;
@@ -84,18 +122,5 @@
                 Math.max(12, parseFloat(getComputedStyle(document.documentElement).fontSize) - 1) + "px";
         }
     </script>
-</head>
-<body>
-    <header>
-        <button id="font-decrease" class="button glyphfix" title="Decrease Font Size" onclick="decreaseFontSize()">a</button>
-        <button id="font-increase" class="button glyphfix" title="Increase Font Size" onclick="increaseFontSize()">A</button>
-        <button id="toggle_theme" class="button glyphfix" title="Toggle Dark/Light Theme" onclick="toggleTheme()">◐</button>
-    </header>
-    <main>
-        <p>Welcome to the future home of GyPTix.</p>
-    </main>
-    <footer>
-        &copy; 2025 GyPTix
-    </footer>
 </body>
 </html>
