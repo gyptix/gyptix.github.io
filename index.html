@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GyPTix</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
         :root {
             font-size: 16px;
             --safe-area-top: env(safe-area-inset-top);
@@ -12,22 +15,46 @@
             --safe-area-left: env(safe-area-inset-left);
             --safe-area-right: env(safe-area-inset-right);
         }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background-color: #101010;
+                --text-color: #f0f0f0;
+                filter: invert(1) hue-rotate(180deg);
+            }
+        }
+        @media (prefers-color-scheme: light) {
+            :root {
+                --background-color: #ffffff;
+                --text-color: #000000;
+                filter: invert(0);
+            }
+        }
         body {
             font-family: sans-serif;
             margin: 0;
             padding: var(--safe-area-top) var(--safe-area-right) var(--safe-area-bottom) var(--safe-area-left);
-            background-color: #fff;
-            color: #000;
+            background-color: var(--background-color);
+            color: var(--text-color);
         }
-        header, main, footer {
+        header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .button {
+            background: none;
+            border: none;
+            font-size: 1rem;
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+        main, footer {
             max-width: 50rem;
             margin: auto;
             padding: 2em;
-        }
-        header {
-            text-align: center;
-            font-size: 2em;
-            font-weight: bold;
         }
         footer {
             text-align: center;
@@ -36,14 +63,29 @@
         }
     </style>
     <script>
-        function testMessage() {
-            alert('JavaScript is running inside this HTML file!');
+        function toggleTheme() {
+            const root = document.documentElement;
+            if (root.style.filter === "invert(1) hue-rotate(180deg)") {
+                root.style.filter = "invert(0)";
+            } else {
+                root.style.filter = "invert(1) hue-rotate(180deg)";
+            }
+        }
+        function increaseFontSize() {
+            document.documentElement.style.fontSize =
+                (parseFloat(getComputedStyle(document.documentElement).fontSize) + 1) + "px";
+        }
+        function decreaseFontSize() {
+            document.documentElement.style.fontSize =
+                Math.max(12, parseFloat(getComputedStyle(document.documentElement).fontSize) - 1) + "px";
         }
     </script>
 </head>
-<body onload="testMessage()">
+<body>
     <header>
-        GyPTix
+        <button id="font-decrease" class="button" title="Decrease Font Size" onclick="decreaseFontSize()">a</button>
+        <button id="font-increase" class="button" title="Increase Font Size" onclick="increaseFontSize()">A</button>
+        <button id="toggle_theme" class="button" title="Toggle Dark/Light Theme" onclick="toggleTheme()">◐</button>
     </header>
     <main>
         <p>Welcome to the future home of GyPTix.</p>
