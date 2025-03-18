@@ -22,8 +22,8 @@
                 <p>Aliquam erat volutpat. Proin nec vehicula velit. Integer in odio eget ligula fermentum tristique vel non ligula.</p>
             </div>
             <div class="videos">
-                <video id="dark-video" src="macOS-640x480-dark.mp4" controls></video>
-                <video id="light-video" src="macOS-640x480-light.mp4" controls></video>
+                <video id="dark-video"  src="iOS-640x480-dark.mp4" controls></video>
+                <video id="light-video" src="iOS-640x480-light.mp4" controls></video>
             </div>
         </div>
     </main>
@@ -91,7 +91,7 @@
             user-select: none;
         }
         .glyphfix {
-/*          filter: invert(1) grayscale(1); */
+/*          filter: invert(1) grayscale(1); */ /* TODO this filter should ONLY be applied in light theme! */
             border: 0.125rem solid rgba(136, 136, 136, 0.2);
             border-radius: 0.25rem;
         }
@@ -108,7 +108,6 @@
         }
         .text {
             flex: 1;
-/*          filter: invert(1) hue-rotate(180deg); */
         }
         body {
             background-color: var(--background-color);
@@ -144,13 +143,11 @@
             if (mode === "dark") {
                 document.body.style.backgroundColor = "#101010";
                 document.body.style.color = "#f0f0f0";
-/*              document.querySelector(".text").style.filter = "invert(1) hue-rotate(180deg)"; */
                 document.getElementById("dark-video").style.display = "block";
                 document.getElementById("light-video").style.display = "none";
             } else {
                 document.body.style.backgroundColor = "#ffffff";
                 document.body.style.color = "#000000";
-/*               document.querySelector(".text").style.filter = "invert(0)"; */
                 document.getElementById("dark-video").style.display = "none";
                 document.getElementById("light-video").style.display = "block";
             }
@@ -176,6 +173,7 @@
             root.style.fontSize = (fontSize - 1) + 'px';
         }
         document.addEventListener("DOMContentLoaded", loadTheme);
+        localStorage.clear(); /* DEBUG initial theme */
     </script>
 </body>
 </html>
