@@ -28,6 +28,12 @@
                 --text-color: #000000;
             }
         }
+        html, body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
         body {
             font-family: sans-serif;
             margin: 0;
@@ -75,7 +81,7 @@
         }
         .content {
             display: flex;
-            max-width: 50rem;
+            max-width: 90%; /* Adjusted to 90% of device width */
             margin: auto;
             padding: 2em;
             gap: 2em;
@@ -83,6 +89,20 @@
         }
         .text {
             flex: 1;
+        }
+        .qa-section {
+            margin-top: 2rem;
+        }
+        .qa-item {
+            margin-bottom: 1rem;
+        }
+        .qa-question {
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .qa-answer {
+            display: none;
+            margin-top: 0.5rem;
         }
         body {
             background-color: var(--background-color);
@@ -147,6 +167,8 @@
             <div class="text">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget elit ac nulla posuere vestibulum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac. [...]
                 <p>Aliquam erat volutpat. Proin nec vehicula velit. Integer in odio eget ligula fermentum tristique vel non ligula.</p>
+                <hr>
+                <div class="qa-section" id="qa-section"></div>
             </div>
             <div class="videos">
                 <div class="tabs">
@@ -239,7 +261,66 @@
                 document.exitFullscreen();
             }
         }
-        document.addEventListener("DOMContentLoaded", loadTheme);
+        function toggleAnswer(event) {
+            const answer = event.target.nextElementSibling;
+            if (answer.style.display === "none" || !answer.style.display) {
+                answer.style.display = "block";
+            } else {
+                answer.style.display = "none";
+            }
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+            loadTheme();
+            const qaData = [
+                {
+                    question: "What is on-device AI and why is it becoming increasingly significant?",
+                    answer: "On-device AI refers to the deployment and execution of artificial intelligence models directly on local devices like smartphones, tablets, and embedded systems, rather than relying on cloud-based servers. This trend is gaining significance due to several key advantages: enhanced user privacy by keeping data on the device, the ability for applications to function offline without an internet connection, faster and more responsive performance due to reduced latency from eliminating network communication, and lower operational costs by decreasing reliance on cloud infrastructure."
+                },
+                {
+                    question: "What hardware components are crucial for enabling on-device AI, particularly for complex tasks like running large language models (LLMs)?",
+                    answer: "Neural Processing Units (NPUs), also known as Neural Engines, Tensor Processing Units, or AI Accelerators, are specialized hardware components designed to accelerate the matrix multiplications and other calculations fundamental to AI and deep learning workloads. These NPUs work alongside CPUs and GPUs within a System on a Chip (SoC) to efficiently handle the intense computational demands of on-device AI, including running increasingly capable LLMs. The performance of an NPU is often measured in TOPS (Trillions of Operations Per Second), indicating its ability to perform these calculations rapidly."
+                },
+                {
+                    question: "How are large language models being adapted for on-device use, considering the limited resources of mobile and edge devices?",
+                    answer: "Adapting LLMs for on-device processing involves various optimization techniques to reduce their size and computational requirements without significant loss of performance. These methods include model quantization (reducing the precision of numerical representations), knowledge distillation (training a smaller model to mimic a larger, more capable one), structural pruning (removing less important connections in the neural network), and the use of smaller, more efficient model architectures like the Phi-3 family, Gemma, Ministral, and Octopus V2. Additionally, techniques like dynamic weight loading and sliding window approaches help manage memory constraints by loading only necessary parts of the model into faster memory during inference."
+                },
+                {
+                    question: "What are some of the current applications and potential future use cases of on-device AI in consumer applications and platforms like Android and Chrome?",
+                    answer: "Current applications of on-device AI include features like enhanced photo and video processing, real-time language translation, intelligent assistants, personalized recommendations, and offline chatbot capabilities (as seen with Flutter and Gemma). In platforms like Android, Google's Gemini Nano enables generative AI tasks directly on the device. Future use cases include more advanced and context-aware digital assistants, improved accessibility features, proactive and personalized user experiences, on-device analysis of documents and media, and enhanced privacy-preserving features leveraging local processing. Chrome is also integrating on-device AI like Gemini Nano to enable features such as live translation and chat prediction directly within the browser."
+                },
+                {
+                    question: "What are the trade-offs and challenges associated with deploying AI models on devices compared to cloud-based AI?",
+                    answer: "Deploying AI on devices presents trade-offs primarily related to computational power, model size, and the need for efficient resource utilization. On-device AI models are typically smaller and less computationally intensive than their cloud-based counterparts, which can sometimes lead to a reduction in accuracy or the range of tasks they can perform. Challenges include managing limited memory and battery life, optimizing models for specific hardware, and handling the diversity of devices with varying capabilities. While on-device AI offers benefits like privacy and offline functionality, cloud-based AI can leverage significantly more computational resources and larger models, potentially offering more complex and accurate results. Hybrid solutions that combine on-device processing for speed and basic tasks with cloud computation for more intensive operations are also being explored."
+                },
+                {
+                    question: "How do frameworks and tools like Hyperapp, TensorFlow Lite, MediaPipe, and vLLM facilitate the development and deployment of on-device AI applications?",
+                    answer: "Frameworks and tools play a crucial role in simplifying the development and deployment of on-device AI. TensorFlow Lite and MediaPipe provide optimized libraries and tools for running machine learning models on mobile and edge devices. Hyperapp, while a JavaScript library for building web applications, demonstrates the principles of state management and UI rendering which are relevant when building user interfaces that interact with on-device AI. vLLM is a library focused on efficient inference of large language models and can be used in offline mode, making it suitable for on-device LLM applications where resources are constrained. These tools help developers convert and optimize models, manage device resources, and build applications that effectively leverage on-device AI capabilities."
+                },
+                {
+                    question: "Which companies are at the forefront of developing hardware and software solutions for on-device AI?",
+                    answer: "Several major technology companies are leading the charge in on-device AI. Apple designs its own SoCs with dedicated NPUs (Neural Engines) integrated into their iPhones and Macs. Google develops Tensor Processing Units (TPUs) for both cloud and on-device applications (like in Pixel phones with the Tensor G3 chip) and is integrating models like Gemini Nano into Android and Chrome. Qualcomm is a major provider of mobile chipsets with integrated NPUs, supporting on-device AI capabilities in a wide range of Android devices. Samsung has also announced its entry into the AI field with its 'Gauss' generative AI model, focusing on on-device applications. Additionally, companies like ARM Holdings, which designs chip blueprints used by many mobile chipmakers, are crucial in advancing the efficiency and AI capabilities of mobile processors. Microsoft with its Phi-3 family optimized for Copilot+ PCs and Intel with its Meteor Lake architecture incorporating NPUs also play significant roles."
+                },
+                {
+                    question: "What are the potential implications of widespread on-device AI for data privacy and security, and how might user control over personal data evolve?",
+                    answer: "Widespread on-device AI has significant positive implications for data privacy and security. By processing data locally on the device, it reduces the need to send sensitive information to the cloud, thereby minimizing the risks associated with data transmission and storage on remote servers. This shift aligns with a growing desire for user control over personal data. Concepts like data permits and systems that encrypt and decentralize personal data storage could be further enabled by on-device AI, allowing users to have greater autonomy over how their information is used. While on-device AI enhances privacy, it also necessitates careful consideration of security on the device itself to prevent unauthorized access to models and locally processed data."
+                }
+            ];
+            const qaSection = document.getElementById("qa-section");
+            qaData.forEach(item => {
+                const qaItem = document.createElement("div");
+                qaItem.className = "qa-item";
+                const question = document.createElement("div");
+                question.className = "qa-question";
+                question.textContent = item.question;
+                question.addEventListener("click", toggleAnswer);
+                const answer = document.createElement("div");
+                answer.className = "qa-answer";
+                answer.textContent = item.answer;
+                qaItem.appendChild(question);
+                qaItem.appendChild(answer);
+                qaSection.appendChild(qaItem);
+            });
+        });
         localStorage.clear(); /* DEBUG initial theme */
     </script>
 </body>
