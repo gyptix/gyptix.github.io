@@ -188,11 +188,10 @@
                 <p><strong>Just pure AI, ready when you need it.</strong></p>
                 <hr>
                 <p><strong>Download Now – It’s Free!</strong></p>
-                <p>Need download from App Store standard image here (generate I will upload)</p>
-                <p><a href="https://tinyurl.com/GyPTix-iOS"><strong>Get it on the App Store</strong></a></p>
-                <p><a href="https://tinyurl.com/GyPTix-macOS"><strong>Try the macOS Version</strong></a></p>
+                <p><a href="https://tinyurl.com/GyPTix-iOS"><img src="AppStore-light.svg" alt="Download on the App Store" width="150"></a></p>
+                <p><a href="https://tinyurl.com/GyPTix-macOS"><img src="MacAppStore-light.svg" alt="Download on the Mac App Store" width="150"></a></p>
                 <p><a href="https://tinyurl.com/GyPTix-TestFlight"><strong>Join TestFlight for Early Access</strong></a></p>
-                <hr>
+                <hr>                
                 <div class="qa-section" id="qa-section"></div>
             </div>
             <div class="videos">
@@ -327,4 +326,26 @@
                 },
                 {
                     question: "What are the potential implications of widespread on-device AI for data privacy and security, and how might user control over personal data evolve?",
-                    answer: "Widespread on-device AI has significant positive implications for data privacy and security. By processing data locally on the device, it reduces the need to send sensitive information to the cloud, thereby minimizing the risks associated with data transmission and storage on remote servers. This shift aligns with a growing desire for user control over personal data. Concepts like data permits and systems that encrypt and decentralize personal data storage could be further enabled by on-device AI, allowing users to have greater autonomy over how their information is used
+                    answer: "Widespread on-device AI has significant positive implications for data privacy and security. By processing data locally on the device, it reduces the need to send sensitive information to the cloud, thereby minimizing the risks associated with data transmission and storage on remote servers. This shift aligns with a growing desire for user control over personal data. Concepts like data permits and systems that encrypt and decentralize personal data storage could be further enabled by on-device AI, allowing users to have greater autonomy over how their information is used. While on-device AI enhances privacy, it also necessitates careful consideration of security on the device itself to prevent unauthorized access to models and locally processed data."
+                }
+            ];
+            const qaSection = document.getElementById("qa-section");
+            qaData.forEach(item => {
+                const qaItem = document.createElement("div");
+                qaItem.className = "qa-item";
+                const question = document.createElement("div");
+                question.className = "qa-question";
+                question.textContent = item.question;
+                question.addEventListener("click", toggleAnswer);
+                const answer = document.createElement("div");
+                answer.className = "qa-answer";
+                answer.textContent = item.answer;
+                qaItem.appendChild(question);
+                qaItem.appendChild(answer);
+                qaSection.appendChild(qaItem);
+            });
+        });
+        localStorage.clear(); /* DEBUG initial theme */
+    </script>
+</body>
+</html>
