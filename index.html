@@ -5,37 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>GyPTix</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-</head>
-<body>
-    <header>
-        <img src="favicon.ico" alt="GyPTix Logo" class="favicon">
-        <div class="button-container">
-            <button id="font-decrease" class="button glyphfix" title="Decrease Font Size" onclick="decreaseFontSize()">a</button>
-            <button id="font-increase" class="button glyphfix" title="Increase Font Size" onclick="increaseFontSize()">A</button>
-            <button id="toggle_theme" class="button glyphfix" title="Toggle Dark/Light Theme" onclick="toggleTheme()">◐</button>
-        </div>
-    </header>
-    <main>
-        <div class="content">
-            <div class="text">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget elit ac nulla posuere vestibulum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac. [...]
-                <p>Aliquam erat volutpat. Proin nec vehicula velit. Integer in odio eget ligula fermentum tristique vel non ligula.</p>
-            </div>
-            <div class="videos">
-                <video id="dark-video" src="iOS-640x480-dark.mp4" controls></video>
-                <video id="light-video" src="iOS-640x480-light.mp4" controls></video>
-            </div>
-        </div>
-    </main>
-    <footer>
-        &copy; 2025 GyPTix
-    </footer>
     <style>
         * {
             box-sizing: border-box;
         }
         :root {
-            font-size: 100%; /* 1rem = 16px */
+            font-size: 16px;
             --safe-area-top: env(safe-area-inset-top);
             --safe-area-bottom: env(safe-area-inset-bottom);
             --safe-area-left: env(safe-area-inset-left);
@@ -118,9 +93,38 @@
             flex-direction: column;
             gap: 1rem;
         }
+        .video-container {
+            position: relative;
+            width: 50%;
+            margin: auto;
+        }
         video {
             width: 100%;
-            max-width: 320px;
+        }
+        .fullscreen-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .tab {
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border: 1px solid #ccc;
+            border-radius: 0.25rem;
+        }
+        .tab.active {
+            background-color: #ddd;
         }
         footer {
             text-align: center;
@@ -128,6 +132,41 @@
             padding-top: 1em;
         }
     </style>
+</head>
+<body>
+    <header>
+        <img src="favicon.ico" alt="GyPTix Logo" class="favicon">
+        <div class="button-container">
+            <button id="font-decrease" class="button glyphfix" title="Decrease Font Size" onclick="decreaseFontSize()">a</button>
+            <button id="font-increase" class="button glyphfix" title="Increase Font Size" onclick="increaseFontSize()">A</button>
+            <button id="toggle_theme" class="button glyphfix" title="Toggle Dark/Light Theme" onclick="toggleTheme()">◐</button>
+        </div>
+    </header>
+    <main>
+        <div class="content">
+            <div class="text">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget elit ac nulla posuere vestibulum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac. [...]
+                <p>Aliquam erat volutpat. Proin nec vehicula velit. Integer in odio eget ligula fermentum tristique vel non ligula.</p>
+            </div>
+            <div class="videos">
+                <div class="tabs">
+                    <div class="tab active" onclick="showVideo('ios')">iOS</div>
+                    <div class="tab" onclick="showVideo('macos')">macOS</div>
+                </div>
+                <div id="ios-video" class="video-container">
+                    <video src="iOS-640x480-dark.mp4" controls></video>
+                    <button class="fullscreen-btn" onclick="toggleFullscreen(this)">Fullscreen</button>
+                </div>
+                <div id="macos-video" class="video-container" style="display: none;">
+                    <video src="macOS-640x480-light.mp4" controls></video>
+                    <button class="fullscreen-btn" onclick="toggleFullscreen(this)">Fullscreen</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        &copy; 2025 GyPTix
+    </footer>
     <script>
         function toggleTheme() {
             let theme = localStorage.getItem("theme") || "auto";
@@ -143,14 +182,10 @@
             if (mode === "dark") {
                 document.body.style.backgroundColor = "#101010";
                 document.body.style.color = "#f0f0f0";
-                document.getElementById("dark-video").style.display = "block";
-                document.getElementById("light-video").style.display = "none";
                 document.querySelectorAll(".glyphfix").forEach(el => el.style.filter = "invert(1) grayscale(1)");
             } else {
                 document.body.style.backgroundColor = "#ffffff";
                 document.body.style.color = "#000000";
-                document.getElementById("dark-video").style.display = "none";
-                document.getElementById("light-video").style.display = "block";
                 document.querySelectorAll(".glyphfix").forEach(el => el.style.filter = "none");
             }
         }
@@ -180,6 +215,28 @@
             let fontSizePercent = (fontSize / rootFontSize) * 100;
             if (fontSizePercent > 75) { // Min scale 75%
                 content.style.fontSize = (fontSizePercent - 10) + '%';
+            }
+        }
+        function showVideo(video) {
+            document.getElementById('ios-video').style.display = 'none';
+            document.getElementById('macos-video').style.display = 'none';
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            if (video === 'ios') {
+                document.getElementById('ios-video').style.display = 'block';
+                document.querySelector('.tab:nth-child(1)').classList.add('active');
+            } else {
+                document.getElementById('macos-video').style.display = 'block';
+                document.querySelector('.tab:nth-child(2)').classList.add('active');
+            }
+        }
+        function toggleFullscreen(button) {
+            const videoContainer = button.closest('.video-container');
+            if (!document.fullscreenElement) {
+                videoContainer.requestFullscreen().catch(err => {
+                    alert(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
+                });
+            } else {
+                document.exitFullscreen();
             }
         }
         document.addEventListener("DOMContentLoaded", loadTheme);
