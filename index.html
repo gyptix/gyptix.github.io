@@ -18,8 +18,8 @@
     <main>
         <div class="content">
             <div class="text">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget elit ac nulla posuere vestibulum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-                <p>Aliquam erat volutpat. Proin nec vehicula velit. Integer in odio eget ligula fermentum tristique vel non ligula.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p>Aliquam erat volutpat. Proin nec vehicula velit.</p>
             </div>
             <div class="videos">
                 <video id="dark-video" src="macOS-640x480-dark.mp4" controls></video>
@@ -45,12 +45,14 @@
             :root {
                 --background-color: #101010;
                 --text-color: #f0f0f0;
+                --filter-invert: invert(1);
             }
         }
         @media (prefers-color-scheme: light) {
             :root {
                 --background-color: #ffffff;
                 --text-color: #000000;
+                --filter-invert: invert(0);
             }
         }
         body {
@@ -91,7 +93,7 @@
             user-select: none;
         }
         .glyphfix {
-            filter: invert(1) grayscale(1);
+            filter: var(--filter-invert) grayscale(1);
             border: 0.125rem solid rgba(136, 136, 136, 0.2);
             border-radius: 0.25rem;
         }
@@ -108,7 +110,7 @@
         }
         .text {
             flex: 1;
-            filter: invert(1) hue-rotate(180deg);
+            filter: var(--filter-invert);
         }
         body {
             background-color: var(--background-color);
@@ -132,34 +134,29 @@
     <script>
         function toggleTheme() {
             let theme = localStorage.getItem("theme") || "auto";
-            if (theme === "dark") {
-                setTheme("light");
-            } else {
-                setTheme("dark");
-            }
+            setTheme(theme === "dark" ? "light" : "dark");
         }
         function setTheme(mode) {
-            const root = document.documentElement;
             localStorage.setItem("theme", mode);
-            if (mode === "dark") {
-                document.body.style.backgroundColor = "#101010";
-                document.querySelector(".text").style.filter = "invert(0)";
-                document.getElementById("dark-video").style.display = "block";
-                document.getElementById("light-video").style.display = "none";
-            } else {
-                document.body.style.backgroundColor = "#ffffff";
-                document.querySelector(".text").style.filter = "invert(1) hue-rotate(180deg)";
-                document.getElementById("dark-video").style.display = "none";
-                document.getElementById("light-video").style.display = "block";
-            }
+            document.documentElement.setAttribute("data-theme", mode);
+            updateTheme();
+        }
+        function updateTheme() {
+            let mode = localStorage.getItem("theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+            document.documentElement.setAttribute("data-theme", mode);
+            
+            const root = document.documentElement;
+            const isDark = mode === "dark";
+
+            root.style.setProperty("--background-color", isDark ? "#101010" : "#ffffff");
+            root.style.setProperty("--text-color", isDark ? "#f0f0f0" : "#000000");
+            root.style.setProperty("--filter-invert", isDark ? "invert(1)" : "invert(0)");
+
+            document.getElementById("dark-video").style.display = isDark ? "block" : "none";
+            document.getElementById("light-video").style.display = isDark ? "none" : "block";
         }
         function loadTheme() {
-            const savedTheme = localStorage.getItem("theme");
-            if (savedTheme) {
-                setTheme(savedTheme);
-            } else {
-                setTheme(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-            }
+            updateTheme();
         }
         document.addEventListener("DOMContentLoaded", loadTheme);
     </script>
