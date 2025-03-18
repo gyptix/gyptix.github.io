@@ -91,7 +91,7 @@
             user-select: none;
         }
         .glyphfix {
-            filter: invert(1) grayscale(1);
+/*          filter: invert(1) grayscale(1); */
             border: 0.125rem solid rgba(136, 136, 136, 0.2);
             border-radius: 0.25rem;
         }
@@ -108,7 +108,7 @@
         }
         .text {
             flex: 1;
-            filter: invert(1) hue-rotate(180deg);
+/*          filter: invert(1) hue-rotate(180deg); */
         }
         body {
             background-color: var(--background-color);
@@ -144,13 +144,13 @@
             if (mode === "dark") {
                 document.body.style.backgroundColor = "#101010";
                 document.body.style.color = "#f0f0f0";
-                document.querySelector(".text").style.filter = "invert(1) hue-rotate(180deg)";
+/*              document.querySelector(".text").style.filter = "invert(1) hue-rotate(180deg)"; */
                 document.getElementById("dark-video").style.display = "block";
                 document.getElementById("light-video").style.display = "none";
             } else {
                 document.body.style.backgroundColor = "#ffffff";
                 document.body.style.color = "#000000";
-                document.querySelector(".text").style.filter = "invert(0)";
+/*               document.querySelector(".text").style.filter = "invert(0)"; */
                 document.getElementById("dark-video").style.display = "none";
                 document.getElementById("light-video").style.display = "block";
             }
