@@ -16,7 +16,16 @@
         </div>
     </header>
     <main>
-        <p>Welcome to the future home of GyPTix.</p>
+        <div class="content">
+            <div class="text">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget elit ac nulla posuere vestibulum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                <p>Aliquam erat volutpat. Proin nec vehicula velit. Integer in odio eget ligula fermentum tristique vel non ligula.</p>
+            </div>
+            <div class="videos">
+                <video id="dark-video" src="macOS-640x480-dark.mp4" controls></video>
+                <video id="light-video" src="macOS-640x480-light.mp4" controls></video>
+            </div>
+        </div>
     </main>
     <footer>
         &copy; 2025 GyPTix
@@ -36,14 +45,12 @@
             :root {
                 --background-color: #101010;
                 --text-color: #f0f0f0;
-                filter: invert(1) hue-rotate(180deg);
             }
         }
         @media (prefers-color-scheme: light) {
             :root {
                 --background-color: #ffffff;
                 --text-color: #000000;
-                filter: invert(0);
             }
         }
         body {
@@ -52,18 +59,20 @@
             padding: var(--safe-area-top) var(--safe-area-right) var(--safe-area-bottom) var(--safe-area-left);
             background-color: var(--background-color);
             color: var(--text-color);
+            font-size: 1rem;
         }
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem;
-            font-size: 1.5rem;
+            padding: 0.25rem 1rem;
+            font-size: 1.2rem;
             font-weight: bold;
         }
         .favicon {
             width: 2rem;
             height: 2rem;
+            filter: none;
         }
         .button-container {
             display: flex;
@@ -77,12 +86,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1rem;
             cursor: pointer;
             user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
         }
         .glyphfix {
             filter: invert(1);
@@ -93,34 +99,65 @@
             outline: none;
             box-shadow: none;
         }
-        main, footer {
+        .content {
+            display: flex;
             max-width: 50rem;
             margin: auto;
             padding: 2em;
+            gap: 2em;
+        }
+        .text {
+            flex: 1;
+        }
+        .videos {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        video {
+            width: 100%;
+            max-width: 320px;
         }
         footer {
             text-align: center;
-            font-size: 0.8em;
-            padding-top: 2em;
+            font-size: 0.8rem;
+            padding-top: 1em;
         }
     </style>
     <script>
         function toggleTheme() {
-            const root = document.documentElement;
-            if (root.style.filter === "invert(1) hue-rotate(180deg)") {
-                root.style.filter = "invert(0)";
+            let theme = localStorage.getItem("theme") || "auto";
+            if (theme === "dark") {
+                setTheme("light");
             } else {
-                root.style.filter = "invert(1) hue-rotate(180deg)";
+                setTheme("dark");
             }
         }
-        function increaseFontSize() {
-            document.documentElement.style.fontSize =
-                (parseFloat(getComputedStyle(document.documentElement).fontSize) + 1) + "px";
+        function setTheme(mode) {
+            const root = document.documentElement;
+            localStorage.setItem("theme", mode);
+            if (mode === "dark") {
+                root.style.backgroundColor = "#101010";
+                root.style.color = "#f0f0f0";
+                document.getElementById("dark-video").style.display = "block";
+                document.getElementById("light-video").style.display = "none";
+            } else {
+                root.style.backgroundColor = "#ffffff";
+                root.style.color = "#000000";
+                document.getElementById("dark-video").style.display = "none";
+                document.getElementById("light-video").style.display = "block";
+            }
         }
-        function decreaseFontSize() {
-            document.documentElement.style.fontSize =
-                Math.max(12, parseFloat(getComputedStyle(document.documentElement).fontSize) - 1) + "px";
+        function loadTheme() {
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme) {
+                setTheme(savedTheme);
+            } else {
+                setTheme(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+            }
         }
+        document.addEventListener("DOMContentLoaded", loadTheme);
     </script>
 </body>
 </html>
