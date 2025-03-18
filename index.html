@@ -18,11 +18,11 @@
     <main>
         <div class="content">
             <div class="text">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget elit ac nulla posuere vestibulum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget elit ac nulla posuere vestibulum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac. [...]
                 <p>Aliquam erat volutpat. Proin nec vehicula velit. Integer in odio eget ligula fermentum tristique vel non ligula.</p>
             </div>
             <div class="videos">
-                <video id="dark-video"  src="iOS-640x480-dark.mp4" controls></video>
+                <video id="dark-video" src="iOS-640x480-dark.mp4" controls></video>
                 <video id="light-video" src="iOS-640x480-light.mp4" controls></video>
             </div>
         </div>
@@ -35,7 +35,7 @@
             box-sizing: border-box;
         }
         :root {
-            font-size: 16px;
+            font-size: 100%; /* 1rem = 16px */
             --safe-area-top: env(safe-area-inset-top);
             --safe-area-bottom: env(safe-area-inset-bottom);
             --safe-area-left: env(safe-area-inset-left);
@@ -94,9 +94,6 @@
             border: 0.125rem solid rgba(136, 136, 136, 0.2);
             border-radius: 0.25rem;
         }
-        @media (prefers-color-scheme: dark) {
-        .glyphfix { filter: invert(1) grayscale(1); }
-        }
         .glyphfix:focus, .glyphfix:active {
             outline: none;
             box-shadow: none;
@@ -107,6 +104,7 @@
             margin: auto;
             padding: 2em;
             gap: 2em;
+            font-size: 100%; /* Initial font size for content (1rem) */
         }
         .text {
             flex: 1;
@@ -165,16 +163,24 @@
             }
         }
         function increaseFontSize() {
-            const root = document.documentElement;
-            let computedStyle = window.getComputedStyle(root).fontSize;
-            let fontSize = parseFloat(computedStyle);
-            root.style.fontSize = (fontSize + 1) + 'px';
+            const content = document.querySelector('main') || document.querySelector('.content');
+            let computedStyle = window.getComputedStyle(content);
+            let fontSize = parseFloat(computedStyle.fontSize);
+            let rootFontSize = parseFloat(window.getComputedStyle(document.documentElement).fontSize);
+            let fontSizePercent = (fontSize / rootFontSize) * 100;
+            if (fontSizePercent < 150) { // Max scale 150%
+                content.style.fontSize = (fontSizePercent + 10) + '%';
+            }
         }
         function decreaseFontSize() {
-            const root = document.documentElement;
-            let computedStyle = window.getComputedStyle(root).fontSize;
-            let fontSize = parseFloat(computedStyle);
-            root.style.fontSize = (fontSize - 1) + 'px';
+            const content = document.querySelector('main') || document.querySelector('.content');
+            let computedStyle = window.getComputedStyle(content);
+            let fontSize = parseFloat(computedStyle.fontSize);
+            let rootFontSize = parseFloat(window.getComputedStyle(document.documentElement).fontSize);
+            let fontSizePercent = (fontSize / rootFontSize) * 100;
+            if (fontSizePercent > 75) { // Min scale 75%
+                content.style.fontSize = (fontSizePercent - 10) + '%';
+            }
         }
         document.addEventListener("DOMContentLoaded", loadTheme);
         localStorage.clear(); /* DEBUG initial theme */
