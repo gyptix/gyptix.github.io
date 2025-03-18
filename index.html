@@ -18,7 +18,7 @@
     <main>
         <div class="content">
             <div class="text">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget elit ac nulla posuere vestibulum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget elit ac nulla posuere vestibulum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac.</p>
                 <p>Aliquam erat volutpat. Proin nec vehicula velit. Integer in odio eget ligula fermentum tristique vel non ligula.</p>
             </div>
             <div class="videos">
@@ -143,11 +143,13 @@
             localStorage.setItem("theme", mode);
             if (mode === "dark") {
                 document.body.style.backgroundColor = "#101010";
+                document.body.style.color = "#f0f0f0";
                 document.querySelector(".text").style.filter = "invert(1) hue-rotate(180deg)";
                 document.getElementById("dark-video").style.display = "block";
                 document.getElementById("light-video").style.display = "none";
             } else {
                 document.body.style.backgroundColor = "#ffffff";
+                document.body.style.color = "#000000";
                 document.querySelector(".text").style.filter = "invert(0)";
                 document.getElementById("dark-video").style.display = "none";
                 document.getElementById("light-video").style.display = "block";
@@ -160,6 +162,18 @@
             } else {
                 setTheme(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
             }
+        }
+        function increaseFontSize() {
+            const root = document.documentElement;
+            let computedStyle = window.getComputedStyle(root).fontSize;
+            let fontSize = parseFloat(computedStyle);
+            root.style.fontSize = (fontSize + 1) + 'px';
+        }
+        function decreaseFontSize() {
+            const root = document.documentElement;
+            let computedStyle = window.getComputedStyle(root).fontSize;
+            let fontSize = parseFloat(computedStyle);
+            root.style.fontSize = (fontSize - 1) + 'px';
         }
         document.addEventListener("DOMContentLoaded", loadTheme);
     </script>
