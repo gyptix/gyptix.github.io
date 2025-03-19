@@ -3,349 +3,274 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>GyPTix</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>GyPTix</title>
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
         :root {
-            font-size: 16px;
             --safe-area-top: env(safe-area-inset-top);
             --safe-area-bottom: env(safe-area-inset-bottom);
             --safe-area-left: env(safe-area-inset-left);
             --safe-area-right: env(safe-area-inset-right);
         }
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --background-color: #101010;
-                --text-color: #f0f0f0;
-            }
-        }
-        @media (prefers-color-scheme: light) {
-            :root {
-                --background-color: #ffffff;
-                --text-color: #000000;
-            }
+        html { 
+            background-color: black; 
         }
         html, body {
+            color: white;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: "Geist", Arial, sans-serif;
+            overflow: hidden;
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
         }
         body {
-            font-family: sans-serif;
-            margin: 0;
-            padding: var(--safe-area-top) var(--safe-area-right) var(--safe-area-bottom) var(--safe-area-left);
-            background-color: var(--background-color);
-            color: var(--text-color);
-            font-size: 1rem;
+            display: flex;
+            flex-direction: column;
+            position: relative; /* ensure position for pseudo-element */
+            overflow: hidden;
+            background: none; /* remove original background */
         }
-        header {
+        h1 {
+            font-size: 2.5rem;
+        }
+        h2 {
+            color: white;
+            font-size: 2rem;
+            font-weight: 400;
+            background: -webkit-linear-gradient(top left, #fff, #444);
+            background: -moz-linear-gradient(top left, #fff, #999);
+            background: -o-linear-gradient(top left, #fff, #999);
+            background: linear-gradient(to bottom right, #fff, #444);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        h4 {
+            font-family: "Geist Mono", monospace;
+            font-weight: 400;
+        }
+        .question{
+          font-size: 1rem;
+          text-align: left;
+        }
+        .answer {
+          font-size: 0.8rem;
+          text-align: left;
+        }
+        header, footer {
+            height: 4rem;
+            flex-shrink: 0;
+            background-color: #101010;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.25rem 1rem;
-            font-size: 1.2rem;
-            font-weight: bold;
+            margin: 0;
+            padding: 0 1rem;
         }
-        .favicon {
+        header img, footer img {
             width: 2rem;
             height: 2rem;
-            filter: none;
-        }
-        .button-container {
-            display: flex;
-            gap: 0.5rem;
-        }
-        .button {
-            background: none;
-            border: none;
-            width: 2rem;
-            height: 2rem;
-            display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
-            cursor: pointer;
-            user-select: none;
         }
-        .glyphfix {
-            border: 0.125rem solid rgba(136, 136, 136, 0.2);
-            border-radius: 0.25rem;
-        }
-        .glyphfix:focus, .glyphfix:active {
-            outline: none;
-            box-shadow: none;
-        }
-        .content {
-            display: flex;
-            max-width: 90%; /* Adjusted to 90% of device width */
-            margin: auto;
-            padding: 2em;
-            gap: 2em;
-            font-size: 100%; /* Initial font size for content (1rem) */
-        }
-        .text {
-            flex: 1;
-        }
-        .qa-section {
-            margin-top: 2rem;
-        }
-        .qa-item {
-            margin-bottom: 1rem;
-        }
-        .qa-question {
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .qa-answer {
-            display: none;
-            margin-top: 0.5rem;
-        }
-        body {
-            background-color: var(--background-color);
-        }
-        .videos {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        .video-container {
-            position: relative;
-            width: 50%;
-            margin: auto;
-        }
-        video {
-            width: 100%;
-        }
-        .fullscreen-btn {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 0.5rem;
-            cursor: pointer;
-        }
-        .tabs {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        .tab {
-            cursor: pointer;
-            padding: 0.5rem 1rem;
-            border: 1px solid #ccc;
-            border-radius: 0.25rem;
-        }
-        .tab.active {
-            background-color: #ddd;
-        }
-        footer {
+        main {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 1em;
             text-align: center;
+        }
+        main img {
+            width: 90%;
+            height: auto;
+            margin-bottom: 2em;
+        }
+        .hamburger {
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            filter: invert(1);
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .expand {
+            background: transparent;
+            opacity: 1.0;
+            border: none;
+            width: 1rem;
+            height: 1rem;
             font-size: 0.8rem;
-            padding-top: 1em;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            margin-left: 0;
+            color: red;
         }
     </style>
 </head>
 <body>
     <header>
-        <img src="favicon.ico" alt="GyPTix Logo" class="favicon">
-        <div class="button-container">
-            <button id="font-decrease" class="button glyphfix" title="Decrease Font Size" onclick="decreaseFontSize()">a</button>
-            <button id="font-increase" class="button glyphfix" title="Increase Font Size" onclick="increaseFontSize()">A</button>
-            <button id="toggle_theme" class="button glyphfix" title="Toggle Dark/Light Theme" onclick="toggleTheme()">◐</button>
-        </div>
+        <img id="logo" alt="GyPTix Logo">
+        <div><b>GyPTix</b></div>
+        <button class="hamburger">☰</button>
     </header>
-    <main>
-        <div class="content">
-            <div class="text">
-                <h3><strong>Your AI, Your Privacy</strong></h3>
-                <p>GyPTix is your <strong>private, offline AI companion</strong>—built for iPhone, iPad, and Apple Silicon Macs. No internet? No problem. GyPTix runs <strong>entirely on your device</strong>, keeping your data <strong>safe and private</strong>.</p>
-                <p><strong>Privacy First:</strong> No servers. No tracking. What you ask stays on your device.</p>
-                <p><strong>Fast & Instant:</strong> No network lag. No waiting. Just quick answers anytime, anywhere.</p>
-                <p><strong>Free & Open-Source:</strong> No subscriptions, no ads—just AI at your fingertips.</p>
-                <hr>
-                <h3><strong>Perfect for Anytime, Anywhere</strong></h3>
-                <p>Stuck on a plane? No Wi-Fi? GyPTix is there.</p>
-                <p>Need quick brainstorming? Get instant answers.</p>
-                <p>Value your privacy? Your data <strong>never</strong> leaves your device.</p>
-                <hr>
-                <h3><strong>Apple Hardware. Apple Speed.</strong></h3>
-                <p>Powered by <strong>Apple’s Neural Engine</strong>, GyPTix is designed to <strong>run fast</strong> on your iPhone, iPad, or Mac. No delays, just <strong>smooth performance</strong> without the cloud.</p>
-                <p><strong>Optimized for Apple Silicon</strong></p>
-                <p><strong>Runs on-device local AI model</strong></p>
-                <p><strong>Future-ready with Mixture of Experts (MoE) models and reasoning</strong></p>
-                <hr>
-                <h3><strong>Why GyPTix?</strong></h3>
-                <p><strong>No subscriptions</strong></p>
-                <p><strong>No data collection</strong></p>
-                <p><strong>Just pure AI, ready when you need it.</strong></p>
-                <hr>
-                <p><strong>Download Now – It’s Free!</strong></p>
-                <p><a href="https://tinyurl.com/GyPTix-iOS"><img src="AppStore-light.svg" alt="Download on the App Store" width="150"></a></p>
-                <p><a href="https://tinyurl.com/GyPTix-macOS"><img src="MacAppStore-light.svg" alt="Download on the Mac App Store" width="150"></a></p>
-                <p><a href="https://tinyurl.com/GyPTix-TestFlight"><strong>Join TestFlight for Early Access</strong></a></p>
-                <hr>                
-                <div class="qa-section" id="qa-section"></div>
-            </div>
-            <div class="videos">
-                <div class="tabs">
-                    <div class="tab active" onclick="showVideo('ios')">iOS</div>
-                    <div class="tab" onclick="showVideo('macos')">macOS</div>
-                </div>
-                <div id="ios-video" class="video-container">
-                    <video src="iOS-640x480-dark.mp4" controls></video>
-                    <button class="fullscreen-btn" onclick="toggleFullscreen(this)">Fullscreen</button>
-                </div>
-                <div id="macos-video" class="video-container" style="display: none;">
-                    <video src="macOS-640x480-light.mp4" controls></video>
-                    <button class="fullscreen-btn" onclick="toggleFullscreen(this)">Fullscreen</button>
-                </div>
-            </div>
-        </div>
-    </main>
+
+    <main id="content"></main>
+
     <footer>
-        &copy; 2025 GyPTix
+        <img id="footer-logo" alt="GyPTix Logo">
+        <div>GyPTix</div>
+        <button class="hamburger">☰</button>
     </footer>
+
     <script>
-        function toggleTheme() {
-            let theme = localStorage.getItem("theme") || "auto";
-            if (theme === "dark") {
-                setTheme("light");
-            } else {
-                setTheme("dark");
-            }
-        }
-        function setTheme(mode) {
-            const root = document.documentElement;
-            localStorage.setItem("theme", mode);
-            if (mode === "dark") {
-                document.body.style.backgroundColor = "#101010";
-                document.body.style.color = "#f0f0f0";
-                document.querySelectorAll(".glyphfix").forEach(el => el.style.filter = "invert(1) grayscale(1)");
-            } else {
-                document.body.style.backgroundColor = "#ffffff";
-                document.body.style.color = "#000000";
-                document.querySelectorAll(".glyphfix").forEach(el => el.style.filter = "none");
-            }
-        }
-        function loadTheme() {
-            const savedTheme = localStorage.getItem("theme");
-            if (savedTheme) {
-                setTheme(savedTheme);
-            } else {
-                setTheme(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-            }
-        }
-        function increaseFontSize() {
-            const content = document.querySelector('main') || document.querySelector('.content');
-            let computedStyle = window.getComputedStyle(content);
-            let fontSize = parseFloat(computedStyle.fontSize);
-            let rootFontSize = parseFloat(window.getComputedStyle(document.documentElement).fontSize);
-            let fontSizePercent = (fontSize / rootFontSize) * 100;
-            if (fontSizePercent < 150) { // Max scale 150%
-                content.style.fontSize = (fontSizePercent + 10) + '%';
-            }
-        }
-        function decreaseFontSize() {
-            const content = document.querySelector('main') || document.querySelector('.content');
-            let computedStyle = window.getComputedStyle(content);
-            let fontSize = parseFloat(computedStyle.fontSize);
-            let rootFontSize = parseFloat(window.getComputedStyle(document.documentElement).fontSize);
-            let fontSizePercent = (fontSize / rootFontSize) * 100;
-            if (fontSizePercent > 75) { // Min scale 75%
-                content.style.fontSize = (fontSizePercent - 10) + '%';
-            }
-        }
-        function showVideo(video) {
-            document.getElementById('ios-video').style.display = 'none';
-            document.getElementById('macos-video').style.display = 'none';
-            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-            if (video === 'ios') {
-                document.getElementById('ios-video').style.display = 'block';
-                document.querySelector('.tab:nth-child(1)').classList.add('active');
-            } else {
-                document.getElementById('macos-video').style.display = 'block';
-                document.querySelector('.tab:nth-child(2)').classList.add('active');
-            }
-        }
-        function toggleFullscreen(button) {
-            const videoContainer = button.closest('.video-container');
-            if (!document.fullscreenElement) {
-                videoContainer.requestFullscreen().catch(err => {
-                    alert(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
-                });
-            } else {
-                document.exitFullscreen();
-            }
-        }
-        function toggleAnswer(event) {
-            const answer = event.target.nextElementSibling;
-            if (answer.style.display === "none" || !answer.style.display) {
-                answer.style.display = "block";
-            } else {
-                answer.style.display = "none";
-            }
-        }
-        document.addEventListener("DOMContentLoaded", () => {
-            loadTheme();
-            const qaData = [
-                {
-                    question: "What is on-device AI and why is it becoming increasingly significant?",
-                    answer: "On-device AI refers to the deployment and execution of artificial intelligence models directly on local devices like smartphones, tablets, and embedded systems, rather than relying on cloud-based servers. This trend is gaining significance due to several key advantages: enhanced user privacy by keeping data on the device, the ability for applications to function offline without an internet connection, faster and more responsive performance due to reduced latency from eliminating network communication, and lower operational costs by decreasing reliance on cloud infrastructure."
-                },
-                {
-                    question: "What hardware components are crucial for enabling on-device AI, particularly for complex tasks like running large language models (LLMs)?",
-                    answer: "Neural Processing Units (NPUs), also known as Neural Engines, Tensor Processing Units, or AI Accelerators, are specialized hardware components designed to accelerate the matrix multiplications and other calculations fundamental to AI and deep learning workloads. These NPUs work alongside CPUs and GPUs within a System on a Chip (SoC) to efficiently handle the intense computational demands of on-device AI, including running increasingly capable LLMs. The performance of an NPU is often measured in TOPS (Trillions of Operations Per Second), indicating its ability to perform these calculations rapidly."
-                },
-                {
-                    question: "How are large language models being adapted for on-device use, considering the limited resources of mobile and edge devices?",
-                    answer: "Adapting LLMs for on-device processing involves various optimization techniques to reduce their size and computational requirements without significant loss of performance. These methods include model quantization (reducing the precision of numerical representations), knowledge distillation (training a smaller model to mimic a larger, more capable one), structural pruning (removing less important connections in the neural network), and the use of smaller, more efficient model architectures like the Phi-3 family, Gemma, Ministral, and Octopus V2. Additionally, techniques like dynamic weight loading and sliding window approaches help manage memory constraints by loading only necessary parts of the model into faster memory during inference."
-                },
-                {
-                    question: "What are some of the current applications and potential future use cases of on-device AI in consumer applications and platforms like Android and Chrome?",
-                    answer: "Current applications of on-device AI include features like enhanced photo and video processing, real-time language translation, intelligent assistants, personalized recommendations, and offline chatbot capabilities (as seen with Flutter and Gemma). In platforms like Android, Google's Gemini Nano enables generative AI tasks directly on the device. Future use cases include more advanced and context-aware digital assistants, improved accessibility features, proactive and personalized user experiences, on-device analysis of documents and media, and enhanced privacy-preserving features leveraging local processing. Chrome is also integrating on-device AI like Gemini Nano to enable features such as live translation and chat prediction directly within the browser."
-                },
-                {
-                    question: "What are the trade-offs and challenges associated with deploying AI models on devices compared to cloud-based AI?",
-                    answer: "Deploying AI on devices presents trade-offs primarily related to computational power, model size, and the need for efficient resource utilization. On-device AI models are typically smaller and less computationally intensive than their cloud-based counterparts, which can sometimes lead to a reduction in accuracy or the range of tasks they can perform. Challenges include managing limited memory and battery life, optimizing models for specific hardware, and handling the diversity of devices with varying capabilities. While on-device AI offers benefits like privacy and offline functionality, cloud-based AI can leverage significantly more computational resources and larger models, potentially offering more complex and accurate results. Hybrid solutions that combine on-device processing for speed and basic tasks with cloud computation for more intensive operations are also being explored."
-                },
-                {
-                    question: "How do frameworks and tools like Hyperapp, TensorFlow Lite, MediaPipe, and vLLM facilitate the development and deployment of on-device AI applications?",
-                    answer: "Frameworks and tools play a crucial role in simplifying the development and deployment of on-device AI. TensorFlow Lite and MediaPipe provide optimized libraries and tools for running machine learning models on mobile and edge devices. Hyperapp, while a JavaScript library for building web applications, demonstrates the principles of state management and UI rendering which are relevant when building user interfaces that interact with on-device AI. vLLM is a library focused on efficient inference of large language models and can be used in offline mode, making it suitable for on-device LLM applications where resources are constrained. These tools help developers convert and optimize models, manage device resources, and build applications that effectively leverage on-device AI capabilities."
-                },
-                {
-                    question: "Which companies are at the forefront of developing hardware and software solutions for on-device AI?",
-                    answer: "Several major technology companies are leading the charge in on-device AI. Apple designs its own SoCs with dedicated NPUs (Neural Engines) integrated into their iPhones and Macs. Google develops Tensor Processing Units (TPUs) for both cloud and on-device applications (like in Pixel phones with the Tensor G3 chip) and is integrating models like Gemini Nano into Android and Chrome. Qualcomm is a major provider of mobile chipsets with integrated NPUs, supporting on-device AI capabilities in a wide range of Android devices. Samsung has also announced its entry into the AI field with its 'Gauss' generative AI model, focusing on on-device applications. Additionally, companies like ARM Holdings, which designs chip blueprints used by many mobile chipmakers, are crucial in advancing the efficiency and AI capabilities of mobile processors. Microsoft with its Phi-3 family optimized for Copilot+ PCs and Intel with its Meteor Lake architecture incorporating NPUs also play significant roles."
-                },
-                {
-                    question: "What are the potential implications of widespread on-device AI for data privacy and security, and how might user control over personal data evolve?",
-                    answer: "Widespread on-device AI has significant positive implications for data privacy and security. By processing data locally on the device, it reduces the need to send sensitive information to the cloud, thereby minimizing the risks associated with data transmission and storage on remote servers. This shift aligns with a growing desire for user control over personal data. Concepts like data permits and systems that encrypt and decentralize personal data storage could be further enabled by on-device AI, allowing users to have greater autonomy over how their information is used. While on-device AI enhances privacy, it also necessitates careful consideration of security on the device itself to prevent unauthorized access to models and locally processed data."
+        const faq = () => {
+            const content = document.getElementById('content')
+            for (let i = 0; i < QnA.length; i++) {
+                const question = document.createElement('h2')
+                question.innerHTML = QnA[i].question
+                question.className = 'question'
+                question.style.cursor = 'pointer'
+                const button = document.createElement('button')
+                button.className = 'expand'
+                button.style.marginLeft = '1rem'
+                button.innerHTML = '▷'
+                const answer = document.createElement('h4')
+                answer.className = 'answer'
+                answer.innerHTML = QnA[i].answer
+                answer.style.display = 'none'
+                const toggle = (event) => {
+                    event.stopPropagation()
+                    const isOpen = answer.style.display === 'block'
+                    document.querySelectorAll('h4.answer').forEach(h4 => h4.style.display = 'none')
+                    document.querySelectorAll('h2.question button.expand').forEach(b => b.innerHTML = '▷')
+                    if (!isOpen) {
+                        answer.style.display = 'block'
+                        button.innerHTML = '▽'
+                    } else {
+                        answer.style.display = 'none'
+                        button.innerHTML = '▷'
+                    }
                 }
-            ];
-            const qaSection = document.getElementById("qa-section");
-            qaData.forEach(item => {
-                const qaItem = document.createElement("div");
-                qaItem.className = "qa-item";
-                const question = document.createElement("div");
-                question.className = "qa-question";
-                question.textContent = item.question;
-                question.addEventListener("click", toggleAnswer);
-                const answer = document.createElement("div");
-                answer.className = "qa-answer";
-                answer.textContent = item.answer;
-                qaItem.appendChild(question);
-                qaItem.appendChild(answer);
-                qaSection.appendChild(qaItem);
-            });
-        });
-        localStorage.clear(); /* DEBUG initial theme */
+                button.onclick = toggle
+                question.onclick = toggle
+                question.appendChild(button)
+                content.appendChild(question)
+                content.appendChild(answer)
+            }
+        }
+
+				const content = () => {
+            const content = document.getElementById('content')
+            for (let i = 0; i < slogans.length; i++) {
+                const header = document.createElement(i === 0 ? 'h1' : 'h2')
+                header.innerHTML = slogans[i].header.
+                		replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
+                const description = document.createElement('h4')
+                description.innerHTML = slogans[i].description.
+                		replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
+                const img = document.createElement('img')
+                img.src = imgData
+                content.appendChild(header)
+                content.appendChild(description)
+                content.appendChild(img)
+            }
+        } 
+
+				const init = () => {
+            const style = document.createElement('style')
+            style.innerHTML = `
+                body::before {
+                    background-image: url(${background});
+                    background-repeat: repeat-y;
+                    background-size: 100% auto;
+                    opacity: 0.25;
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    z-index: -1;
+                }
+            `
+            document.head.appendChild(style)
+            document.getElementById('logo').src = imgData
+            document.getElementById('footer-logo').src = imgData
+            content()
+            const h2 = document.createElement('h2')
+						h2.innerText = 'Frequently Asked Questions'
+            document.getElementById('content').appendChild(h2)
+						faq()
+            document.querySelectorAll('img').forEach(img => img.src = imgData)
+				}
+				const slogans = [
+					{
+            header: "Private Friendly On Device AI Chat", 
+            description: "Built to answer your questions, engage in discussions and brainstorm ideas."
+					},
+					{
+            header: "Brainstorm, learn and create", 
+            description: "Let GyPTix AI help you simplify **complex** ideas and spark **creativity**."
+					},
+					{
+            header: "Stay productive anywhere", 
+            description: "Built to work **everywhere**: on the plane, in the forest, over the ocean. No limitation."
+					},
+					{
+            header: "Your data stays on your device.", 
+            description: "Complete privacy, always."
+					},
+					{
+            header: "**No** servers, **No** subscriptions, **No** sign in, **No** data breaches.", 
+            description: "Open source tool respecting your privacy and **never** collecting personal data."
+					},
+					{
+            header: "Abreviated off-line wikipedia in your pocket.", 
+            description: "GyPTix AI strives to provide simple to understand knowledge to your fingertips."
+					},
+					{
+            header: "Minimal Carbon footprint.", 
+            description: "Can be solar powered on a campground."
+					},
+				]
+        const QnA = [
+          {
+            question: "Why do I need on on-device AI GyPTix and alike?",
+            answer: "TODO outline usage scenarious."
+          },
+          {
+            question: "Can I use voice recognition asking questions?",
+            answer: "Of course! There is a microphone 🎙 button, usually next to big space bar on your mobile device keyboard - just press and talk."
+          },
+          {
+            question: "Why GyPTix does not implement whisper to mode?",
+            answer: "A lot of Big Brothers AI implement always listen to you and speak to you mode. It is not technically challenging to do but for privacy reasons GyPTix developers decided to skip it for now. And when you talk to Big Brother AI the words your buddies, friends and family and coworkers say also travel along the wire to corporate servers without their consent..."
+          },
+          {
+            question: "What is on-device AI and why is it becoming increasingly significant?",
+            answer: "On-device AI refers to the deployment and execution of artificial intelligence models directly on local devices like smartphones, tablets, and embedded systems, rather than relying on cloud-based servers. This trend is gaining significance due to several key advantages: enhanced user privacy by keeping data on the device, the ability for applications to function offline without an internet connection, faster and more responsive performance due to reduced latency from eliminating network communication, and lower operational costs by decreasing reliance on cloud infrastructure."
+          },
+          {
+            question: "How are large language models being adapted for on-device use, considering the limited resources of mobile and edge devices?",
+            answer: "Adapting LLMs for on-device processing involves various optimization techniques to reduce their size and computational requirements without significant loss of performance. These methods include model quantization (reducing the precision of numerical representations), knowledge distillation (training a smaller model to mimic a larger, more capable one), structural pruning (removing less important connections in the neural network), and the use of smaller, more efficient model architectures."
+          },
+          {
+            question: "What are the potential implications of widespread on-device AI for data privacy and security, and how might user control over personal data evolve?",
+            answer: "Widespread on-device AI has significant positive implications for data privacy and security. By processing data locally on the device, it reduces the need to send sensitive information to the cloud, thereby minimizing the risks associated with data transmission and storage on remote servers. This shift aligns with a growing desire for user control over personal data. Concepts like data permits and systems that encrypt and decentralize personal data storage could be further enabled by on-device AI, allowing users to have greater autonomy over how their information is used. While on-device AI enhances privacy, it also necessitates careful consideration of security on the device itself to prevent unauthorized access to models and locally processed data."
+          }
+        ]
+        const imgData = `data:@file/jpeg;base64,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`
+        const background = `data:@file/octet-stream;base64,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`
+		init()
     </script>
 </body>
 </html>
