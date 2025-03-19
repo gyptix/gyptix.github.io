@@ -2,6 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      href="https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/favicon.ico"
+      type="image/x-icon"
+    />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no"
@@ -245,7 +250,6 @@
         h2.innerText = "Frequently Asked Questions"
         document.getElementById("content").appendChild(h2)
         faq()
-        document.querySelectorAll("img").forEach((img) => (img.src = blank))
         images()
         document.getElementById("logo").src = logo
         document.getElementById("footer-logo").src = logo
@@ -284,12 +288,12 @@
         {
           question: "Can I use voice recognition asking questions?",
           answer:
-            "Of course! There is a microphone 🎙 button, usually next to big space bar on your mobile device keyboard - just press and talk.",
+            "Of course! There is a microphone 🎙 button, usually next to big space bar on your mobile device keyboard - just press and talk.<br><img src='https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/microphone.avif' />",
         },
         {
-          question: "Why GyPTix does not implement whisper to mode?",
+          question: 'Why GyPTix does not implement "whisper to" mode?',
           answer:
-            "A lot of Big Brothers AI implement always listen to you and speak to you mode. It is not technically challenging to do but for privacy reasons GyPTix developers decided to skip it for now. And when you talk to Big Brother AI the words your buddies, friends and family and coworkers say also travel along the wire to corporate servers without their consent...",
+            "A lot of Big Brothers implement a mode when AI always listens to you and speak the answers to you. It is not technically challenging to do, but for privacy reasons GyPTix developers decided to skip it for now. And when you talk to Big Brother AI the words your buddies, friends and family and coworkers say also travel along the wire to corporate servers without their consent...",
         },
         {
           question:
@@ -299,15 +303,15 @@
         },
         {
           question:
-            "How are large language models being adapted for on-device use, considering the limited resources of mobile and edge devices?",
+            "How are large AI models being adapted for on-device use, considering the limited resources of mobile and edge devices?",
           answer:
-            "Adapting LLMs for on-device processing involves various optimization techniques to reduce their size and computational requirements without significant loss of performance. These methods include model quantization (reducing the precision of numerical representations), knowledge distillation (training a smaller model to mimic a larger, more capable one), structural pruning (removing less important connections in the neural network), and the use of smaller, more efficient model architectures.",
+            "Adapting AI for on-device processing involves various optimization techniques to reduce their size and computational requirements without significant loss of performance. These methods include knowledge distillation, structural pruning and the use of smaller, more efficient model architectures.",
         },
         {
           question:
             "What are the potential implications of widespread on-device AI for data privacy and security, and how might user control over personal data evolve?",
           answer:
-            "Widespread on-device AI has significant positive implications for data privacy and security. By processing data locally on the device, it reduces the need to send sensitive information to the cloud, thereby minimizing the risks associated with data transmission and storage on remote servers. This shift aligns with a growing desire for user control over personal data. Concepts like data permits and systems that encrypt and decentralize personal data storage could be further enabled by on-device AI, allowing users to have greater autonomy over how their information is used. While on-device AI enhances privacy, it also necessitates careful consideration of security on the device itself to prevent unauthorized access to models and locally processed data.",
+            "Widespread on-device AI has significant positive implications for data privacy and security. By processing data locally on the device, it reduces the need to send sensitive information to the cloud, thereby minimizing the risks associated with data transmission and storage on remote servers. This shift aligns with a growing desire for user control over personal data. Concepts like data permits and systems that encrypt and decentralize personal data storage could be further enabled by on-device AI, allowing users to have greater autonomy over how their information is used. While on-device AI enhances privacy, it also necessitates careful consideration of security on the device itself to prevent unauthorized access to models and locally processed data.<br><img src='https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/secure.avif' />",
         },
       ]
       /* Tooling: https://base64.guru/converter/encode/file */
