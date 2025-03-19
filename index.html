@@ -168,7 +168,7 @@
             }
         }
 
-				const content = () => {
+	const content = () => {
             const content = document.getElementById('content')
             for (let i = 0; i < slogans.length; i++) {
                 const header = document.createElement(i === 0 ? 'h1' : 'h2')
@@ -183,9 +183,19 @@
                 content.appendChild(description)
                 content.appendChild(img)
             }
-        } 
+        }
 
-				const init = () => {
+	const images = () => {
+	    fetch('https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/running-gyptix.avif')
+            .then(response => response.blob())
+            .then(blob => {
+              const url = URL.createObjectURL(blob)
+              const firstSloganImg = document.querySelector('#content img')
+              if (firstSloganImg) firstSloganImg.src = url
+            })
+	}
+
+	const init = () => {
             const style = document.createElement('style')
             style.innerHTML = `
                 body::before {
@@ -211,8 +221,9 @@
             document.getElementById('content').appendChild(h2)
 						faq()
             document.querySelectorAll('img').forEach(img => img.src = imgData)
-				}
-				const slogans = [
+            images()
+	}
+	const slogans = [
 					{
             header: "Private Friendly On Device AI Chat", 
             description: "Built to answer your questions, engage in discussions and brainstorm ideas."
