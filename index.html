@@ -60,6 +60,8 @@
         color: white;
         font-size: 2rem;
         font-weight: 400;
+      }
+      .slogan h2 {
         background: -webkit-linear-gradient(top left, #fff, #444);
         background: -moz-linear-gradient(top left, #fff, #999);
         background: -o-linear-gradient(top left, #fff, #999);
@@ -107,9 +109,10 @@
         height: 2rem;
       }
       #title {
-        position: absolute; /* Center it independently */
+        font-size: 1.25rem;
+        position: absolute;
         left: 50%;
-        transform: translateX(-50%); /* True center */
+        transform: translateX(-50%);
       }
       .rainbow {
           background: linear-gradient(90deg, blue, green, yellow, orange, red);
@@ -119,7 +122,7 @@
       }
       header img[src$=".svg"],
       footer img[src$=".svg"] {
-        height: 1.5rem;
+        height: 1.25rem;
       }
       header img[src$=".svg"]:hover,
       footer img[src$=".svg"]:hover {
@@ -249,6 +252,7 @@
             /\*\*(.*?)\*\*/g,
             "<b>$1</b>",
           )
+          header.classList.add("slogan") 
           const description = document.createElement("h4")
           description.innerHTML = slogans[i].description.replace(
             /\*\*(.*?)\*\*/g,
@@ -325,7 +329,7 @@
         {
           header: "Stay Productive Anywhere",
           description:
-            "Works **everywhere**—at the beach, in a forest, or on a plane. No limits.",
+            "Works **everywhere** — at the beach, in a forest, or on a plane. No limits.",
         },
         {
           header: "Your Data Stays with You",
