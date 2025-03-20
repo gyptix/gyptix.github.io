@@ -91,11 +91,25 @@
         margin: 0;
         padding: 0 1rem;
       }
+      .left-group {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
       #logo {
         width: 2rem;
         height: 2rem;
         align-items: center;
         justify-content: center;
+      }
+      #ios img,
+      #macos img {
+        height: 2rem;
+      }
+      #title {
+        position: absolute; /* Center it independently */
+        left: 50%;
+        transform: translateX(-50%); /* True center */
       }
       .rainbow {
           background: linear-gradient(90deg, blue, green, yellow, orange, red);
@@ -164,20 +178,20 @@
     </style>
   </head>
   <body>
-    <header>
+  <header>
+    <div class="left-group">
       <img id="logo" />
-      <a href="https://tinyurl.com/GyPTix-iOS" target="_blank"
-        ><img
-          src="https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/AppStore-dark.svg"
-      /></a>
-      <div class="rainbow"><b>GyPTix</b></div>
-      <a href="https://tinyurl.com/GyPTix-macOS" target="_blank"
-        ><img
-          src="https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/MacAppStore-dark.svg"
-      /></a>
-<!--  <button class="hamburger">☰</button> -->
-    </header>
-    <main id="content"></main>
+      <a id="ios" href="https://tinyurl.com/GyPTix-iOS" target="_blank">
+        <img src="https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/AppStore-dark.svg" />
+      </a>
+    </div>
+    <div id="title" class="rainbow"><b>GyPTix</b></div>
+    <a id="macos" href="https://tinyurl.com/GyPTix-macOS" target="_blank">
+      <img src="https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/MacAppStore-dark.svg" />
+    </a>
+    <!-- <button class="hamburger">☰</button> -->
+  </header>
+  <main id="content"></main>
     <footer>
       <a href="https://youtu.be/-TcZm-LfFis" target="_blank">Podcast</a>
       <a href="https://gyptix.github.io/privacy" target="_blank">Privacy Policy</a>
