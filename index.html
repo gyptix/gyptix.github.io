@@ -88,12 +88,15 @@
         margin: 0;
         padding: 0 1rem;
       }
-      header img,
-      footer img {
+      #logo {
         width: 2rem;
         height: 2rem;
         align-items: center;
         justify-content: center;
+      }
+      header img[src$=".svg"],
+      footer img[src$=".svg"] {
+        height: 1.5rem;
       }
       main {
         flex-grow: 1;
@@ -129,19 +132,38 @@
         margin-left: 0;
         color: red;
       }
+      footer a {
+        color: #f0f0ff;
+        font-family: "Geist", Arial, sans-serif;
+        font-weight: 400;
+        text-decoration: none;
+      }
     </style>
   </head>
   <body>
     <header>
       <img id="logo" alt="GyPTix Logo" />
+      <a href="https://tinyurl.com/GyPTix-macOS"
+        ><img
+          src="https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/MacAppStore-dark.svg"
+          alt="Mac App Store"
+      /></a>
       <div><b>GyPTix</b></div>
+      <a href="https://tinyurl.com/GyPTix-iOS"
+        ><img
+          src="https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/AppStore-dark.svg"
+          alt="App Store"
+      /></a>
       <button class="hamburger">☰</button>
     </header>
     <main id="content"></main>
     <footer>
-      <img id="footer-logo" alt="GyPTix Logo" />
-      <div>GyPTix</div>
-      <button class="hamburger">☰</button>
+      <a href="https://youtu.be/-TcZm-LfFis">Podcast</a>
+      <a href="https://testflight.apple.com/join/hcPYNhKe"
+        ><img
+          src="https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/TestFlight-dark.svg"
+          alt="TestFlight"
+      /></a>
     </footer>
     <script>
       const faq = () => {
