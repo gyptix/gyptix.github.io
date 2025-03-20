@@ -97,9 +97,24 @@
         align-items: center;
         justify-content: center;
       }
+      .rainbow {
+          background: linear-gradient(90deg, blue, green, yellow, orange, red);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-weight: bold;
+      }
       header img[src$=".svg"],
       footer img[src$=".svg"] {
         height: 1.5rem;
+      }
+      header img[src$=".svg"]:hover,
+      footer img[src$=".svg"]:hover {
+        animation: shimmer 3s linear infinite;
+      }
+      @keyframes shimmer {
+        0%   { filter: brightness(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.5)); }
+        50%  { filter: brightness(1.5) drop-shadow(0 0 10px rgba(255, 255, 255, 0.8)); }
+        100% { filter: brightness(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.5)); }
       }
       main {
         flex-grow: 1;
@@ -151,16 +166,16 @@
   <body>
     <header>
       <img id="logo" />
-      <a href="https://tinyurl.com/GyPTix-macOS" target="_blank"
-        ><img
-          src="https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/MacAppStore-dark.svg"
-      /></a>
-      <div><b>GyPTix</b></div>
       <a href="https://tinyurl.com/GyPTix-iOS" target="_blank"
         ><img
           src="https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/AppStore-dark.svg"
       /></a>
-      <button class="hamburger">☰</button>
+      <div class="rainbow"><b>GyPTix</b></div>
+      <a href="https://tinyurl.com/GyPTix-macOS" target="_blank"
+        ><img
+          src="https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/MacAppStore-dark.svg"
+      /></a>
+<!--  <button class="hamburger">☰</button> -->
     </header>
     <main id="content"></main>
     <footer>
