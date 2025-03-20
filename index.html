@@ -253,64 +253,65 @@
       }
       const slogans = [
         {
-          header: "Private Friendly On Device AI Chat",
+          header: "Private, Friendly AI on Your Device",
           description:
-            "Built to answer your questions, engage in discussions and brainstorm ideas.",
+            "Get quick answers, start discussions, and brainstorm new ideas—all on your device.",
         },
         {
-          header: "Brainstorm, learn and create",
+          header: "Learn, Create, Explore",
           description:
-            "Let GyPTix AI help you simplify **complex** ideas and spark **creativity**.",
+            "Discover scientific breakthroughs, programming languages, history, and natural sciences. Experiment with AI prompts and learn how AIs think. GyPTix AI helps you understand AI as if you're learning to talk with a new species.",
         },
         {
-          header: "Stay productive anywhere",
+          header: "Stay Productive Anywhere",
           description:
-            "Built to work **everywhere**: on the plane, in the forest, over the ocean. No limitation.",
+            "Works **everywhere**—at the beach, in a forest, or on a plane. No limits.",
         },
         {
-          header: "Your data stays on your device.",
+          header: "Your Data Stays with You",
           description:
-            "Complete privacy, always.<br>**No** servers, **No** subscriptions, **No** sign in,<br>**No** data breaches.<br>Open source app **never** collecting personal data.",
+            "Complete privacy, always.<br>**No** servers, **No** subscriptions,<br>**No** sign-ins, **No** data leaks.<br>An open-source app that **never** collects your personal data.",
         },
         {
-          header: "Minimal Carbon footprint.",
-          description: "Can be solar powered on a campground.",
+          header: "Eco-Friendly AI",
+          description:
+            "Uses very little power—runs easily with solar energy, no big server farms required.",
         },
       ]
       const QnA = [
         {
-          question: "Why do I need on on-device AI GyPTix and alike?",
-          answer: "TODO outline usage scenarious.",
+          question: "Why do I need an on-device AI like GyPTix?",
+          answer:
+            "On-device AI helps you quickly get answers, learn new things, and brainstorm ideas without needing an internet connection. It keeps your data safe by keeping it on your device, so your personal information stays private.",
         },
         {
-          question: "Can I use voice recognition asking questions?",
+          question: "Can I just talk instead of typing?",
           answer:
-            "Of course! There is a microphone 🎙 button, usually next to big space bar on your mobile device keyboard - just press and talk.<br><img src='https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/microphone.avif' />",
-        },
-        {
-          question: 'Why GyPTix does not implement "whisper to" mode?',
-          answer:
-            "A lot of Big Brothers implement a mode when AI always listens to you and speak the answers to you. It is not technically challenging to do, but for privacy reasons GyPTix developers decided to skip it for now. And when you talk to Big Brother AI the words your buddies, friends and family and coworkers say also travel along the wire to corporate servers without their consent...",
+            "Yes! Use the microphone button next to the space bar on your mobile keyboard—just press it and start talking.<br><img src='https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/microphone.avif' />",
         },
         {
           question:
-            "What is on-device AI and why is it becoming increasingly significant?",
+            "How does widespread on-device AI affect data privacy, security, and user control?",
           answer:
-            "On-device AI refers to the deployment and execution of artificial intelligence models directly on local devices like smartphones, tablets, and embedded systems, rather than relying on cloud-based servers. This trend is gaining significance due to several key advantages: enhanced user privacy by keeping data on the device, the ability for applications to function offline without an internet connection, faster and more responsive performance due to reduced latency from eliminating network communication, and lower operational costs by decreasing reliance on cloud infrastructure.",
+            "On-device AI greatly improves privacy and security because your data stays on your device instead of being sent to the cloud. This means less risk of your data being hacked or misused. It also gives you more control over your personal information. However, it’s important to keep your device secure to protect the AI models and data stored on it.<br><img src='https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/secure.avif' />",
+        },
+        {
+          question: 'Why doesn\'t GyPTix have a "whisper to" mode?',
+          answer:
+            "Some apps always listen and respond automatically. GyPTix avoids this to protect your privacy. When an app constantly listens, it can collect conversations without everyone’s permission. GyPTix believes your privacy comes first.",
+        },
+        {
+          question: "What is on-device AI, and why is it becoming important?",
+          answer:
+            "On-device AI runs artificial intelligence directly on your phone, tablet, or other devices instead of relying on the internet or cloud servers. It’s becoming popular because it keeps your data private, works even without an internet connection, responds faster, and reduces costs since it doesn't need cloud services.",
         },
         {
           question:
-            "How are large AI models being adapted for on-device use, considering the limited resources of mobile and edge devices?",
+            "How are large AI models adapted for devices with limited resources?",
           answer:
-            "Adapting AI for on-device processing involves various optimization techniques to reduce their size and computational requirements without significant loss of performance. These methods include knowledge distillation, structural pruning and the use of smaller, more efficient model architectures.",
+            "Large AI models are made smaller and more efficient using special techniques like simplifying models, removing unnecessary parts, and designing smaller, smarter versions that still work well on phones and other smaller devices.",
         },
-        {
-          question:
-            "What are the potential implications of widespread on-device AI for data privacy and security, and how might user control over personal data evolve?",
-          answer:
-            "Widespread on-device AI has significant positive implications for data privacy and security. By processing data locally on the device, it reduces the need to send sensitive information to the cloud, thereby minimizing the risks associated with data transmission and storage on remote servers. This shift aligns with a growing desire for user control over personal data. Concepts like data permits and systems that encrypt and decentralize personal data storage could be further enabled by on-device AI, allowing users to have greater autonomy over how their information is used. While on-device AI enhances privacy, it also necessitates careful consideration of security on the device itself to prevent unauthorized access to models and locally processed data.<br><img src='https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/secure.avif' />",
-        },
-      ]
+      ];
       /* Tooling: https://base64.guru/converter/encode/file */
       const blank = `data:@file/png;base64,iVBORw0KGgoAAAANSUhEUgAABQAAAAM8AQMAAAAyQp9YAAAABlBMVEUAAAAAAAClZ7nPAAAAAXRSTlMAQObYZgAAAJhJREFUeNrtwQENAAAAwqD3T20ON6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD+DAjaAAHYwn70AAAAAElFTkSuQmCC`
 
