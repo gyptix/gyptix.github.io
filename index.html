@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link
       rel="icon"
-      href="https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/favicon.ico"
+      href="favicon.ico"
       type="image/x-icon"
     />
     <meta
@@ -182,12 +182,12 @@
     <div class="left-group">
       <img id="logo" />
       <a id="ios" href="https://tinyurl.com/GyPTix-iOS" target="_blank">
-        <img src="https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/AppStore-dark.svg" />
+        <img src="AppStore-dark.svg" />
       </a>
     </div>
     <div id="title" class="rainbow"><b>GyPTix</b></div>
     <a id="macos" href="https://tinyurl.com/GyPTix-macOS" target="_blank">
-      <img src="https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/MacAppStore-dark.svg" />
+      <img src="MacAppStore-dark.svg" />
     </a>
     <!-- <button class="hamburger">☰</button> -->
   </header>
@@ -197,7 +197,7 @@
       <a href="https://gyptix.github.io/privacy" target="_blank">Privacy Policy</a>
       <a href="https://testflight.apple.com/join/hcPYNhKe"
         ><img
-          src="https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/TestFlight-dark.svg"
+          src="TestFlight-dark.svg"
       /></a>
     </footer>
     <script>
@@ -263,8 +263,6 @@
       }
 
       const images = () => {
-        const location =
-          "https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/"
         const images = [
           "running-gyptix.avif",
           "brainstorm.avif",
@@ -274,7 +272,7 @@
         ]
         document.querySelectorAll("#content img").forEach((img, i) => {
           if (images[i]) {
-            fetch(location + images[i])
+            fetch(images[i])
               .then((response) => response.blob())
               .then((blob) => (img.src = URL.createObjectURL(blob)))
           }
@@ -349,13 +347,13 @@
         {
           question: "Can I just talk instead of typing?",
           answer:
-            "Yes! Use the microphone button next to the space bar on your mobile keyboard—just press it and start talking.<br><img src='https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/microphone.avif' />",
+            "Yes! Use the microphone button next to the space bar on your mobile keyboard—just press it and start talking.<br><img src='microphone.avif' />",
         },
         {
           question:
             "How does widespread on-device AI affect data privacy, security, and user control?",
           answer:
-            "On-device AI greatly improves privacy and security because your data stays on your device instead of being sent to the cloud. This means less risk of your data being hacked or misused. It also gives you more control over your personal information. However, it’s important to keep your device secure to protect the AI models and data stored on it.<br><img src='https://raw.githubusercontent.com/leok7v/README.html/refs/heads/main/secure.avif' />",
+            "On-device AI greatly improves privacy and security because your data stays on your device instead of being sent to the cloud. This means less risk of your data being hacked or misused. It also gives you more control over your personal information. However, it’s important to keep your device secure to protect the AI models and data stored on it.<br><img src='secure.avif' />",
         },
         {
           question: 'Why doesn\'t GyPTix have a "whisper to" mode?',
