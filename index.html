@@ -306,11 +306,12 @@
         faq()
         images()
         document.getElementById("logo").src = logo
-        const userAgent = navigator.userAgent.toLowerCase()
-        const isIOS = /iphone|ipad|ipod/.test(userAgent)
-        if (!isIOS) {
-          const screenWidth = screen.width
-          document.body.style.maxWidth = `${screenWidth * 0.5}px`
+        const userAgent = navigator.userAgent.toLowerCase();
+        const isMobile = /iphone|ipad|ipod|android/.test(userAgent);
+        if (!isMobile) {
+          const scale = Math.max(1, Math.min(2, (window.innerWidth / screen.width) * 2));
+          const initialFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+          document.documentElement.style.fontSize = `${initialFontSize * scale}px`;
         }
       }
       const slogans = [
