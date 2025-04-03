@@ -280,13 +280,14 @@
           }
         })
       }
+      
+      var initialFontSize = "10pt"
 
       const on_resize = () => {
         const userAgent = navigator.userAgent.toLowerCase();
         const isMobile = /iphone|ipad|ipod|android/.test(userAgent);
         if (!isMobile) {
           const scale = Math.max(1, Math.min(2, (window.innerWidth / screen.width) * 2));
-          const initialFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
           document.documentElement.style.fontSize = `${initialFontSize * scale}px`;
         }
       }
@@ -316,6 +317,7 @@
         faq()
         images()
         document.getElementById("logo").src = logo
+        initialFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
         on_resize()
         window.addEventListener('resize', on_resize)
       }
