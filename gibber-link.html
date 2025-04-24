@@ -31,15 +31,29 @@
   <meta name="twitter:description" content="Agent2Agent conversation in your browser. https://github.com/PennyroyalTea/gibberlink" />  
   <meta name="twitter:image"       content="https://gyptix.github.io/gibberlink-social-preview.avif" />
   <style>
-    .video-wrapper {
-      position: relative;
-      width: 560px;
-      height: 315px;
+     *,
+     *::before,
+     *::after {
+       box-sizing: border-box;
+     }
+     html, body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
     }
-    .video-wrapper iframe {
-      display: block;
+    .video-wrapper {
+      position: absolute;
+      top: 0; left: 0;
       width: 100%;
       height: 100%;
+    }
+    .video-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
     }
     .corner-btn {
       position: absolute;
