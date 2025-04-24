@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script>
+    if (window.self !== window.top) { window.top.location.replace(window.self.location.href) }
+  </script>
+  <base target="_top">
   <title>GibberLink</title>
   <!--  https://github.com/PennyroyalTea/gibberlink  -->
   <!--  MIT License  -->
@@ -23,8 +27,7 @@
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="GibberLink: On‑Device AI by Anton Pidkuiko and Boris Starkov" />
   <meta name="twitter:description" content="Agent2Agent conversation in your browser. https://github.com/PennyroyalTea/gibberlink" />  
-  <meta name="twitter:image"       content="https://gyptix.github.io/gibberlink-social-preview.avif" />
-      
+  <meta name="twitter:image"       content="https://gyptix.github.io/gibberlink-social-preview.avif" />      
   <style>
     .video-wrapper {
       position: relative;
