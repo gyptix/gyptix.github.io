@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GibberLink</title>
+  <!--  https://github.com/PennyroyalTea/gibberlink  -->
+  <!--  MIT License  -->
+  <!--  ## Authors
+        Contact us: contact@gbrl.ai
+        Anton Pidkuiko: [threads](https://www.threads.net/@anton10xr), [linkedin](https://www.linkedin.com/in/anton-pidkuiko-7535409b), [github](https://github.com/anton10xr)
+        Boris Starkov: [linkedin](https://www.linkedin.com/in/boris-starkov/), [github](https://github.com/PennyroyalTea)
+        based on [ggwave](https://github.com/ggerganov/ggwave) library by [Georgi Gerganov](https://github.com/ggerganov) and conversational AI by [ElevenLabs](https://try.elevenlabs.io/gibberlink)
+   -->
+  <style>
+    .video-wrapper {
+      position: relative;
+      width: 560px;
+      height: 315px;
+    }
+    .video-wrapper iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .corner-btn {
+      position: absolute;
+      top: 8px; right: 8px;
+      width: 160px;    
+      height: 32px;
+      z-index: 10;
+      cursor: pointer;
+    }
+    .corner-btn img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="video-wrapper">
+    <iframe
+      id="player"
+      src="https://www.youtube.com/embed/EtNagNezo8w?autoplay=1&enablejsapi=1"
+      frameborder="0"
+      allow="autoplay; encrypted-media; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+    <a
+      href="https://gyptix.github.io"
+      target="_blank"
+      class="corner-btn">
+      <img
+        src="data:image/octet-stream;base64,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" width="457"
+        alt="Go to GyPTix">
+    </a>
+  </div>
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    let player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        events: { 'onStateChange': onPlayerStateChange }
+      });
+    }
+    function onPlayerStateChange(e) {
+      if (e.data === YT.PlayerState.ENDED) {
+        window.location.href = 'https://gyptix.github.io';
+      }
+    }
+  </script>
+</body>
+</html>
