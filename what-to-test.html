@@ -4,11 +4,23 @@
     <meta charset="utf-8">
     <title>GyPTix Test Plan</title>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        :root { --font-scale: 1; }
+        @media (min-width: 1024px) { :root { --font-scale: 1.2; } }
+        body {
+            margin: 1em;
+            font-size: calc(1rem * var(--font-scale));
+            background-color: var(--bg);
+            color: var(--fg);
+        }
+        @media (prefers-color-scheme: light) { :root { --bg: #ffffff; --fg: #000000; } }
+        @media (prefers-color-scheme: dark) { :root { --bg: #000000; --fg: #ffffff; } }
+    </style>
 </head>
 <body>
     <div id="content"></div>
     <script>
-    document.addEventListener("DOMContentLoaded", function(e) {
+    document.addEventListener("DOMContentLoaded", function() {
         const md_content = `# Test Plan
 
 GyPTix application test plan:
@@ -42,8 +54,7 @@ GyPTix application test plan:
   "Generate brief summary of this conversation"
 `;
         const html_output = marked.parse(md_content);
-        const content_div = document.getElementById("content");
-        content_div.innerHTML = html_output;
+        document.getElementById("content").innerHTML = html_output;
     });
     </script>
 </body>
