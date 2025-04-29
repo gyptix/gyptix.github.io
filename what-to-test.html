@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>GyPTix Test Plan</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div id="content"></div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function(e) {
+        const md_content = `# Test Plan
+
+GyPTix application test plan:
+
+- Using suggestions to generate new conversations
+- Clicking the new conversation button in the top right to cycle suggestions
+- Continuing conversations by asking meaningful follow-up questions
+- Verifying that the conversation title is appropriate
+- Confirming that titles appear in the History section (☰ hamburger button on the top left)
+- Renaming, searching, and deleting conversations via the blue ⌄ button
+  invoking the menu next to the conversation title in the History view and
+  selecting Rename or Delete from the menu
+- Loading previous conversations and continuing the discussion
+- Bringing other GPU-intensive applications (e.g. YouTube) to the foreground during generation
+- Returning to the GyPTix application and ensuring generation continues uninterrupted
+- Using the stop button (square, bottom left) to interrupt generation and then the continue → button to resume
+- Verifying that the font size buttons (a and A) and theme toggle (◐ dark/light) work in the History view
+- Verifying that the info ⓘ and shred (♽) buttons function correctly in the History view
+- Ensuring text selection and copy to clipboard work as expected
+- On iPad, checking functionality in both portrait and landscape orientations
+- On iPad, testing support for external USB and Bluetooth keyboards
+- On macOS, verifying that window resizing works properly
+- Generating list-based prompts (e.g. “List of the best movies of all time”) to check for infinite generation loops
+- Killing the app mid-generation to ensure it handles abrupt termination gracefully
+- Scrolling to the top and bottom (using scroll buttons and manual scrolling) during generation to verify smooth behavior
+- Attempt to break out of 4096 tokens context window - keep pasting
+  "Tell me more" as a follow-up question several times
+  till the conversation grows really long
+- Verify that after loading a conversation from history the model still
+  remembers the topic when prompted
+  "Generate brief summary of this conversation"
+`;
+        const html_output = marked.parse(md_content);
+        const content_div = document.getElementById("content");
+        content_div.innerHTML = html_output;
+    });
+    </script>
+</body>
+</html>
