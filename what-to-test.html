@@ -52,6 +52,8 @@ GyPTix application test plan:
 - Verify that after loading a conversation from history the model still
   remembers the topic when prompted
   "Generate brief summary of this conversation"
+- Try HTML polutted input field: "\<a href="google.com"\>Hello there\</a\>"
+- Any other usage scenarious you can come up with
 `;
         const html_output = marked.parse(md_content);
         document.getElementById("content").innerHTML = html_output;
